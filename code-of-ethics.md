@@ -11,9 +11,11 @@ tested.
 ## The rules
 
 1. **The document stays on the user's machine.** It is never uploaded. Only the
-   citation strings themselves are sent, to Find Case Law and nowhere else. Any
-   machine-learning model the tool runs is a local one, with weights on disk, and
-   there is no hosted model API, ever.
+   citation strings themselves are sent, and the titles of the Acts and statutory
+   instruments the document names. Any machine-learning model the tool runs is a local
+   one, with weights on disk, and there is no hosted model API, ever.
+   *Amended 2026-11-09:* was "Only the citation strings themselves are sent, to Find
+   Case Law and nowhere else." Statute titles now also go to legislation.gov.uk (rule 6).
 
 2. **We never say a case is good law.** No open data exists that could support the
    claim. The tool says "found", "not found in Find Case Law" or "outside coverage".
@@ -37,6 +39,13 @@ tested.
    looked up twice, always well inside the published rate limit. Nothing is harvested
    from any other legal database, and nothing is done in bulk without the licence that
    permits it.
+   *Amended 2026-11-09:* an Act or statutory instrument named by title and year in the
+   user's document is also looked up on legislation.gov.uk: one title lookup each,
+   cached, at least 5 seconds apart (its robots.txt crawl delay), with a named
+   User-Agent, under the Open Government Licence. The tool says "found on
+   legislation.gov.uk" or "not found on legislation.gov.uk", and never that a statute is
+   current or in force. Case citations are still resolved against Find Case Law alone.
+   Until this date the rule read "Resolution uses Find Case Law alone".
 
 7. **No analysis of people.** The classifier tags citation spans in text. It does not
    select, count or profile parties, judges, counsel or anyone else, and no personal
@@ -61,3 +70,5 @@ tested.
 ## History
 
 - 2026-11-09: first version.
+- 2026-11-09: rules 1 and 6 amended: statutes named in the document are looked up on
+  legislation.gov.uk by title.
