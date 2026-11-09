@@ -19,6 +19,10 @@ Requests identify themselves with the User-Agent
 
 It is used one document at a time, by one person, well under each service's published rate limit.
 
+## How it is built to behave
+
+The rules the tool is held to, in public: [code of ethics](code-of-ethics.md).
+
 ## Contact
 
 If this tool's requests cause you any problem, please
