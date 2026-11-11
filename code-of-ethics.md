@@ -46,6 +46,11 @@ tested.
    legislation.gov.uk" or "not found on legislation.gov.uk", and never that a statute is
    current or in force. Case citations are still resolved against Find Case Law alone.
    Until this date the rule read "Resolution uses Find Case Law alone".
+   *Amended 2026-11-11:* a treaty or convention named in the document (the European Convention on
+   Human Rights, a United Nations convention, a Hague convention) is detected and listed, never
+   looked up. Where the project has opened a treaty's official text by hand, the list offers a
+   link to it for the user to click; the tool makes no request to any treaty site, and never says a
+   treaty is in force, ratified or binding.
 
 7. **No analysis of people.** The classifier tags citation spans in text. It does not
    select, count or profile parties, judges, counsel or anyone else, and no personal
@@ -72,3 +77,4 @@ tested.
 - 2026-11-09: first version.
 - 2026-11-09: rules 1 and 6 amended: statutes named in the document are looked up on
   legislation.gov.uk by title.
+- 2026-11-11: rule 6 amended: treaties and conventions are listed and linked, never looked up.
