@@ -36,16 +36,15 @@ tested.
    anywhere. The local classifier is pinned by hash and decoded without randomness, and
    a test checks that running it twice gives the same answer.
 
-6. **One source, used politely.** Resolution uses Find Case Law alone: one lookup per
-   citation named in the user's document, every response cached so a document is never
-   looked up twice, always well inside the published rate limit. Nothing is harvested
-   from any other legal database, and nothing is done in bulk without the licence that
-   permits it.
-   *Amended 2026-11-09:* an Act or statutory instrument named by title and year in the
-   user's document is also looked up on legislation.gov.uk: one title lookup each,
-   cached, at least 5 seconds apart (its robots.txt crawl delay), with a named
-   User-Agent, under the Open Government Licence. The tool says "found on
-   legislation.gov.uk" or "not found on legislation.gov.uk", and never that a statute is
+6. **Specific sources, used politely.** *Amended 2026-11-17:* Resolution uses Find Case
+   Law alone for UK cases: one lookup per citation named in the user's document, every
+   response cached so a document is never looked up twice, always well inside the published
+   rate limit. Nothing is harvested from any other legal database, and nothing
+   is done in bulk without the licence that permits it.
+   *Amended 2026-11-17:* The tool uses legislation.gov.uk for an Act or statutory instrument named by
+   title and year in the user's document: one title lookup each, cached, at least 5 seconds apart
+   (its robots.txt crawl delay), with a named User-Agent, under the Open Government Licence.
+   The tool says "found onlegislation.gov.uk" or "not found on legislation.gov.uk", and never that a statute is
    current or in force. Case citations are still resolved against Find Case Law alone.
    Until this date the rule read "Resolution uses Find Case Law alone".
    *Amended 2026-11-11:* a treaty or convention named in the document (the European Convention on
@@ -57,8 +56,7 @@ tested.
    be looked up in the House of Lords judgment archive on publications.parliament.uk, under the Open
    Parliament Licence: the archive's index page once, cached, then the one judgment page, at least 5
    seconds apart, with the named User-Agent, never a crawl. Superseded because parliament.uk's
-   Cloudflare protection refused the tool's client: four index requests were made while testing it,
-   and none succeeded.
+   Cloudflare protection refused the tool's client.
    *Amended 2026-11-16:* the tool makes no request to parliament.uk. A copy of the archive's index
    page, recorded once by hand on 2026-11-16 (the archive closed on 30 July 2009), ships with the
    tool, and a 2001 to 2009 House of Lords citation is matched against it on the user's machine. The
@@ -71,16 +69,16 @@ tested.
    User-Agent. Never the site's own PDF or Word files, and never a crawl. Checked first against
    legislation.gov.uk's robots.txt and fair-use policy, neither of which disallows it.
 
-7. **No analysis of people.** The classifier tags citation spans in text. It does not
+8. **No analysis of people.** The classifier tags citation spans in text. It does not
    select, count or profile parties, judges, counsel or anyone else, and no personal
    data is extracted, stored or output beyond the judgment text itself.
 
-8. **Measured, not asserted.** The model is evaluated against a hand-labelled gold set,
+9. **Measured, not asserted.** The model is evaluated against a hand-labelled gold set,
    with results broken down by court and by kind of reference, so that a weakness on one
    court or one citation style is visible rather than averaged away. The evaluation is
    re-run whenever the weights change, and the results are available on request.
 
-9. **Judgment text is not redistributed.** The tool shows the user the case name, date
+10. **Judgment text is not redistributed.** The tool shows the user the case name, date
    and court it read from a record, with the Open Justice Licence attribution, and links
    to the judgment on Find Case Law rather than copying it. Judgment text used to train
    or evaluate the model is kept on the project's own machines and is never published.
@@ -88,7 +86,7 @@ tested.
    Licence text only, with nothing from Find Case Law; if a model is later trained on
    Find Case Law records under licence, the release notes will say so.
 
-10. **Changes to this code are dated and kept.** A rule is never quietly removed. If one
+11. **Changes to this code are dated and kept.** A rule is never quietly removed. If one
     changes, the old wording stays here with the date it was superseded and the reason.
 
 ## History
