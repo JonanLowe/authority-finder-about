@@ -16,6 +16,8 @@ tested.
    one, with weights on disk, and there is no hosted model API, ever.
    *Amended 2026-11-09:* was "Only the citation strings themselves are sent, to Find
    Case Law and nowhere else." Statute titles now also go to legislation.gov.uk (rule 6).
+   *Amended 2026-11-17:* when the tool bundles an Act, it also asks legislation.gov.uk for
+   the image files that Act's own XML names (rule 6). Nothing from the document is sent.
 
 2. **We never say a case is good law.** No open data exists that could support the
    claim. The tool says "found", "not found in Find Case Law" or "outside coverage".
@@ -51,6 +53,11 @@ tested.
    looked up. Where the project has opened a treaty's official text by hand, the list offers a
    link to it for the user to click; the tool makes no request to any treaty site, and never says a
    treaty is in force, ratified or binding.
+   *Added 2026-11-17.* When it bundles an Act, the tool may also download the image files that the
+   Act's own XML on legislation.gov.uk names, so that the PDF it draws of the Act includes them. Only
+   those files, each once, kept on your machine, at least five seconds apart, under the same named
+   User-Agent. Never the site's own PDF or Word files, and never a crawl. Checked first against
+   legislation.gov.uk's robots.txt and fair-use policy, neither of which disallows it.
 
 7. **No analysis of people.** The classifier tags citation spans in text. It does not
    select, count or profile parties, judges, counsel or anyone else, and no personal
@@ -78,3 +85,5 @@ tested.
 - 2026-11-09: rules 1 and 6 amended: statutes named in the document are looked up on
   legislation.gov.uk by title.
 - 2026-11-11: rule 6 amended: treaties and conventions are listed and linked, never looked up.
+- 2026-11-17: rules 1 and 6 amended: a bundled Act's own image files are downloaded from
+  legislation.gov.uk to draw its PDF.
