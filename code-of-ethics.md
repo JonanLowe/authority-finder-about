@@ -53,6 +53,18 @@ tested.
    looked up. Where the project has opened a treaty's official text by hand, the list offers a
    link to it for the user to click; the tool makes no request to any treaty site, and never says a
    treaty is in force, ratified or binding.
+   *Amended 2026-11-16, superseded the same day:* a House of Lords citation from 2001 to 2009 was to
+   be looked up in the House of Lords judgment archive on publications.parliament.uk, under the Open
+   Parliament Licence: the archive's index page once, cached, then the one judgment page, at least 5
+   seconds apart, with the named User-Agent, never a crawl. Superseded because parliament.uk's
+   Cloudflare protection refused the tool's client: four index requests were made while testing it,
+   and none succeeded.
+   *Amended 2026-11-16:* the tool makes no request to parliament.uk. A copy of the archive's index
+   page, recorded once by hand on 2026-11-16 (the archive closed on 30 July 2009), ships with the
+   tool, and a 2001 to 2009 House of Lords citation is matched against it on the user's machine. The
+   tool says "listed in the House of Lords archive" or "not listed in the House of Lords archive",
+   never "found", because the judgment itself is not opened; the link to it is for the user to
+   click. The bundle saves nothing from parliament.uk.
    *Added 2026-11-17.* When it bundles an Act, the tool may also download the image files that the
    Act's own XML on legislation.gov.uk names, so that the PDF it draws of the Act includes them. Only
    those files, each once, kept on your machine, at least five seconds apart, under the same named
@@ -85,5 +97,9 @@ tested.
 - 2026-11-09: rules 1 and 6 amended: statutes named in the document are looked up on
   legislation.gov.uk by title.
 - 2026-11-11: rule 6 amended: treaties and conventions are listed and linked, never looked up.
+- 2026-11-16: rule 6 amended: House of Lords judgments from 2001 to 2009 looked up in the
+  parliament.uk archive; superseded the same day.
+- 2026-11-16: rule 6 amended: no request to parliament.uk; House of Lords citations are matched
+  against a saved copy of the archive's index.
 - 2026-11-17: rules 1 and 6 amended: a bundled Act's own image files are downloaded from
   legislation.gov.uk to draw its PDF.
