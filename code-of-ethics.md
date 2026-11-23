@@ -18,10 +18,21 @@ tested.
    Case Law and nowhere else." Statute titles now also go to legislation.gov.uk (rule 6).
    *Amended 2026-11-17:* when the tool bundles an Act, it also asks legislation.gov.uk for
    the image files that Act's own XML names (rule 6). Nothing from the document is sent.
+   *Amended 2026-11-23:* the tool also sends, built only from references the document names and never
+   from its other text: a statutory instrument's number when it is named only by number (for example
+   "SI 2019/859"); a Scottish citation to scotcourts.gov.uk, and a Northern Irish one to judiciaryni.uk
+   once that lookup is switched on (rule 6); and, when the user asks for a bundle, the addresses of the
+   judgments and statutes those references lead to. Until this date the rule named citation strings,
+   statute titles and a bundled Act's image files only.
 
 2. **We never say a case is good law.** No open data exists that could support the
    claim. The tool says "found", "not found in Find Case Law" or "outside coverage".
    It never says "correct", "valid" or "still good".
+   *Amended 2026-11-23:* the tool's words have changed. For a case it says "Found in Find Case Law",
+   "Not found in Find Case Law", "Before Find Case Law's coverage — not looked up" or "Court not in
+   Find Case Law", and for the other sources it uses the words given in rule 6. It still never says
+   "correct", "valid", "still good", "current" or "in force". Until this date the rule listed "outside
+   coverage" among the tool's words.
 
 3. **Nothing is silently dropped.** Every reference the tool extracts appears in the
    report with a status. A reference it could not resolve is a reported row, never a
@@ -31,6 +42,11 @@ tested.
    2001 at the earliest, and no House of Lords, Scottish or Northern Irish courts.
    Citations outside that boundary are reported as "outside coverage", never as "not
    found", and any headline figure is given alongside the share that fell outside it.
+   *Amended 2026-11-23:* the boundary has moved. House of Lords citations from 2001 to 2009 are matched
+   against a saved copy of the archive's index, and Scottish citations are looked up on scotcourts.gov.uk
+   (both rule 6); a Northern Ireland lookup is built but switched off. A citation outside every source is
+   reported as "Before Find Case Law's coverage — not looked up" or "Court not in Find Case Law", never as
+   "not found". Until this date the rule said such citations were reported as "outside coverage".
 
 5. **Same input, same output.** The tool is deterministic. No generative model is used
    anywhere. The local classifier is pinned by hash and decoded without randomness, and
@@ -47,6 +63,10 @@ tested.
    The tool says "found onlegislation.gov.uk" or "not found on legislation.gov.uk", and never that a statute is
    current or in force. Case citations are still resolved against Find Case Law alone.
    Until this date the rule read "Resolution uses Find Case Law alone".
+   *Amended 2026-11-09, recorded here 2026-11-23:* when the user asks for a bundle, the tool downloads,
+   for each case found, the judgment's PDF from Find Case Law, and for each Act or statutory instrument
+   found, its text as XML from legislation.gov.uk: one request each, cached. It never requests
+   legislation.gov.uk's PDF or Word files, which that site's robots.txt disallows.
    *Amended 2026-11-11:* a treaty or convention named in the document (the European Convention on
    Human Rights, a United Nations convention, a Hague convention) is detected and listed, never
    looked up. Where the project has opened a treaty's official text by hand, the list offers a
@@ -68,6 +88,35 @@ tested.
    those files, each once, kept on your machine, at least five seconds apart, under the same named
    User-Agent. Never the site's own PDF or Word files, and never a crawl. Checked first against
    legislation.gov.uk's robots.txt and fair-use policy, neither of which disallows it.
+   *Amended 2026-11-20, recorded here 2026-11-23:* a statutory instrument named only by its number ("SI
+   2019/859", or a Northern Ireland "SR 2010/113") is looked up on legislation.gov.uk by that number: one
+   request, cached, on the same terms as a title. A Scottish case carries a link to the Scottish Courts
+   and Tribunals Service judgments search, for the user to click.
+   *Amended 2026-11-22, recorded here 2026-11-23:* a Scottish citation (Court of Session or High Court
+   of Justiciary, for example "[2019] CSOH 70") is looked up on scotcourts.gov.uk, the Scottish Courts
+   and Tribunals Service judgments site, under the Open Government Licence its copyright policy gives.
+   That site's addresses are not built from the citation, so the tool sends one search per citation,
+   through the search the site's own judgments page uses, then reads the first page of at most five of
+   the opinions it returns until one prints the citation; the rest are never downloaded. Cached, at
+   least 5 seconds apart, with the named User-Agent. The tool says "Found on scotcourts.gov.uk" or "Not
+   confirmed on scotcourts.gov.uk", never "not found", because the search is not exact. A bundle saves
+   the matched opinion's PDF.
+   *Amended 2026-11-22, recorded here 2026-11-23:* guidance named in the document (sentencing
+   guidelines, codes of practice and of conduct, the Code for Prosecutors, practice notes and Practice
+   Statements, regulators' and prosecutors' guidance) is listed, never looked up or downloaded, with no
+   link, and never called current, in force or binding.
+   *Amended 2026-11-23:* a Northern Ireland citation (for example "[2025] NICA 8") can be looked up on
+   judiciaryni.uk, the Judiciary NI website. **This lookup is switched off and makes no request** until
+   the Lady Chief Justice's Office confirms that the judgments are covered by the Open Government
+   Licence; this rule will be amended again, dated, when it is switched on. Switched on, it sends one
+   request for the judgment's page, whose address is built from the citation, and one search of that
+   site only if the page is not there; cached, at least 5 seconds apart, with the named User-Agent; never
+   the site-wide search its robots.txt disallows. It says "Found on judiciaryni.uk" or "Not found on
+   judiciaryni.uk", and a bundle saves the judgment's PDF from that site.
+   *Amended 2026-11-23:* a treaty may also show its United Nations Treaty Series and Council of Europe
+   Treaty Series numbers, read by hand from public records and shipped with the tool as a saved list.
+   The tool makes no request to any treaty site, and never says a treaty is in force, ratified or
+   binding.
 
 8. **No analysis of people.** The classifier tags citation spans in text. It does not
    select, count or profile parties, judges, counsel or anyone else, and no personal
@@ -101,3 +150,7 @@ tested.
   against a saved copy of the archive's index.
 - 2026-11-17: rules 1 and 6 amended: a bundled Act's own image files are downloaded from
   legislation.gov.uk to draw its PDF.
+- 2026-11-23: recorded here: rule 6 amended for bundles (2026-11-09), statutory instruments by
+  number and the Scottish search link (2026-11-20), the Scottish lookup and guidance (2026-11-22).
+  Rules 1, 2 and 4 amended to match. Rule 6 amended: a Northern Ireland lookup, switched off, and
+  treaty numbers from a saved list.
